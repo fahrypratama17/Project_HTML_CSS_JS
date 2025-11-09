@@ -3,7 +3,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -75,8 +75,13 @@ button:hover {
 }
 
 #bookmark-list a {
-    background-color: #27ae60;
+    color: #27ae60;
     text-decoration: none;
+    transition: transform 0.3s;
+}
+
+#bookmark-list a:hover {
+    transform: scale(1.1);
 }
 
 #bookmark-list button {
