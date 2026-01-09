@@ -199,7 +199,7 @@ header p {
 
 .social-icon:hover {
     background-color: var(--primary-color);
-    color: var(--text-gray);
+    color: var(--text-light);
     transform: translateY(-3px);
 }
 
