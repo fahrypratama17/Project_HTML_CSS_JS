@@ -136,7 +136,8 @@ async function handleMealClick(e) {
       mealDetails.scrollIntoView({ behavior: "smooth"});
     }
   } catch (error) {
-    errorContainer.textContent = "Could not load recipe details. Please try again later."
+    console.error(error);
+    errorContainer.textContent = "Could not load recipe details. Please try again later.";
     errorContainer.classList.remove("hidden");
   }
 }
