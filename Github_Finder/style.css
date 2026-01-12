@@ -99,7 +99,7 @@ button:hover {
 .profile-header {
     display: flex;
     align-items: flex-start;
-    grid-area: 25;
+    gap: 25px;
     margin-bottom: 25px;
 }
 
@@ -146,7 +146,7 @@ button:hover {
 .btn {
     display: inline-block;
     padding: 8px 16px;
-    border-color: var(--primary-color);
+    background-color: var(--primary-color);
     color: #000;
     text-decoration: none;
     border-radius: 20px;
