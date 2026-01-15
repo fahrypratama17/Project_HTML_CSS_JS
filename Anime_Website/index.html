@@ -5,11 +5,38 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <title>Anime Website</title>
 </head>
 <body>
+  <header class="header">
+    <div class="logo"><i class="fas fa-play-circle"></i> Anime Website</div>
+    <nav class="nav-tabs">
+      <a href="#" class="nav-tab active">Movies</a>
+      <a href="#" class="nav-tab">Series</a>
+      <a href="#" class="nav-tab">Series</a>
+    </nav>
 
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Type to Search...">
+      <div class="user-action">
+        <i class="fas fa-cog" style="cursor: pointer"></i>
+        <i class="fas fa-user-circle" style="cursor: pointer; color: rgb(169, 41, 41)"></i>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3 class="sidebar-title">Menu</h3>
+        <a href="#" class="sidebar-item active">
+          <i class="fas fa-home"></i> Home
+        </a>
+      </div>
+    </aside>
+  </div>
 </body>
 </html>
