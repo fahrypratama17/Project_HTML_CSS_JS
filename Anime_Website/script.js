@@ -11,3 +11,43 @@ const card = `
                       </div>
                     `
 
+async function loadAnime() {
+  const response = await fetch('https://api.jikan.moe/v4/top/anime');
+  const data = await response.json();
+
+  const grid = document.getElementById("animeGrid");
+  grid.innerHTML = '';
+
+  data.data.forEach((anime) => {
+    const genres = anime.genres ? anime.genres.map ((g) => g.name).join(', ') : "";
+
+    grid.innerHTML += `          
+                      <div class="anime-card">
+                        <div class="anime-poster" style="background-image: url('${anime.images.jpg.image_url}')" ></div>
+                        <div class="anime-info">
+                          <div class="anime-info">
+                            <div class="anime-title">${anime.title}</div>
+                            <div class="anime-rating"><i class="fas fa-star"></i> ${anime.score || 'N/A'}</div>
+                            <div class="anime-genres">${genres}</div>
+                          </div>
+                        </div>
+                      </div>
+                    `;
+
+    document.querySelectorAll('.anime-card').forEach((card) => {
+      card.addEventListener('click', function() {
+        const title = this.querySelector('.anime-title').textContent;
+        alert(`Opening ${title}...`);
+      })
+    })
+  });
+}
+
+document.querySelectorAll('.nav-tab').forEach((card) => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.nav-tab').forEach()
+  })
+})
+
+loadAnime();
