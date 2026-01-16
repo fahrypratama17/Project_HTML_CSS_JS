@@ -43,10 +43,30 @@ async function loadAnime() {
   });
 }
 
-document.querySelectorAll('.nav-tab').forEach((card) => {
+document.querySelectorAll('.nav-tab').forEach((tab) => {
   tab.addEventListener('click', function(e) {
     e.preventDefault();
-    document.querySelectorAll('.nav-tab').forEach()
+    document.querySelectorAll('.nav-tab').forEach((t) => t.classList.remove('active'));
+    this.classList.add('active');
+  })
+})
+
+document.querySelectorAll('.sidebar-item').forEach((sidebar) => {
+  sidebar.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.sidebar-item').forEach((s) => s.classList.remove('active'));
+    this.classList.add('active');
+  })
+})
+
+document.querySelector('.play-button').addEventListener('click', () => {
+  alert('Playing One Punch Man!');
+})
+
+document.querySelectorAll('.popular-item').forEach((item) => {
+  item.addEventListener('click', function() {
+    const title = this.querySelector('h4').textContent;
+    alert(`Opening ${title}...`);
   })
 })
 
