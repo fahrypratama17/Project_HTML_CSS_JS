@@ -325,3 +325,21 @@ body {
     color: #888;
     font-size: 0.8rem;
 }
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .sidebar, .sidebar-right {
+        width: 100%;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
