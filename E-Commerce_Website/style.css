@@ -75,8 +75,82 @@ body {
 .nav-item {
     display: flex;
     align-items: center;
+    gap: 5px;
     padding: 0.625rem 1.5rem;
     color: #64748b;
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background: #f8fafc;
+    color: #3b82f6;
+}
+
+.nav-item.active {
+    background: #eff6ff;
+    color: #3b82f6;
+    border-right: 2px solid #3b82f6;
+}
+
+.nav-item i {
+    width: 18px;
+    font-size: 1rem;
+}
+
+.explore-button {
+    margin: 0 1.5rem 1.5rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.explore-button:hover {
+    background: #2563eb;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #f1f5f9;
+    margin-top: auto;
+}
+
+.recent-orders h4 {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.order-dot {
+    width: 6px;
+    height: 6px;
+    background: #cbd5e0;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+}
+
+.logout-btn {
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
 }
