@@ -19,9 +19,6 @@ async function loadProducts() {
   }
 }
 
-loadProducts()
-
-
 function renderFeaturedProducts() {
   const container = document.getElementById('featuredProducts');
   const featured = products.slice(0, 2);
@@ -30,7 +27,7 @@ function renderFeaturedProducts() {
     `
       <div class="featured-product">
         <div class="product-badge ${index === 1 ? "dark" : ""}">
-          
+          Something Here
         </div>
         
         <button class="wishlist-btn" onclick="toggleWishlist(${product.id})">
@@ -48,6 +45,7 @@ function renderFeaturedProducts() {
     `
   ).join("");
 }
+
 function renderProducts() {
   const container = document.getElementById('productsGrid');
   const filteredProducts = currentCategory === 'all'
@@ -64,6 +62,26 @@ function renderProducts() {
     ;
   }
 
-  container.innerHTML =
+  container.innerHTML = filteredProducts.map((product) =>
+  `
+    <div class="product-card">
+      <button class="wishlist-btn" onclick="toggleWishlist(${product.id})">
+        <i class="far fa-heart"></i>
+      </button>
+    
+      <img src="${product.image}" alt="${product.title}" class="product-image">
+      <div class="product-info">
+      <h4>${product.title.substring(0, 40)}...</h4>
+        <p style="color: #64748b; font-size: 0.9rem; margin: 0.5rem 0">
+          $${product.price}
+        </p>
+        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  `
+  ).join("");
 }
 
+loadProducts();
