@@ -84,6 +84,53 @@ function renderProducts() {
   ).join("");
 }
 
+function addToCart(productId) {
+  const product = products.find((p) => p.id === productId);
+  const existingItem = cart.find((item) => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({...product, quantity: 1});
+  }
+
+  updateCartUI();
+  showNotification('Added to Cart');
+  renderCheckout();
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter((item) => item.id !== productId);
+  updateCartUI();
+  renderCheckout();
+}
+
+function updateQuantity(productId, change) {
+  const item = cart.find((item) => item.id === productId);
+
+  if (item) {
+    item.quantity += change;
+    if (item.quantity <= 0) {
+      removeFromCart(productId);
+    } else {
+      updateCartUI();
+      renderCheckout();
+    }
+  }
+}
+
+function toggleWishlist(productId) {
+  const btn = document.querySelector(`[onclick="toggleWishlist(${productId})"] i`)
+
+  if (btn.classList.contains('far')) {
+    btn.className = "fas fa-heart";
+    btn.style.color = '#ef4444';
+  } else {
+    btn.className = "fas fa-heart";
+    btn.style.color = '';
+  }
+}
+
 loadProducts();
 
 const struct = `
