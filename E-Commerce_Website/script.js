@@ -85,3 +85,19 @@ function renderProducts() {
 }
 
 loadProducts();
+
+const struct = `
+        <div class="card-item">
+          <img src="${item.image}" alt="${item.title}">
+          <div class="cart-item-info">
+            <div class="cart-item-title"></div>
+            <div class="cart-item-price"></div>
+            <div class="quantity-controls">
+              <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+              <span style="padding: 0 0.5rem;">${item.quantity}</span>
+              <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+              <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+            </div>
+          </div>
+        </div>
+`
