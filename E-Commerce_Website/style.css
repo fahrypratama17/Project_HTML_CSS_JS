@@ -500,6 +500,7 @@ body {
     align-items: center;
     gap: 1rem;
     padding: 1rem 0;
+    margin-left: 2rem;
     border-bottom: 1px solid #f1f5f9;
 }
 
@@ -510,7 +511,7 @@ body {
 .cart-item img {
     width: 60px;
     height: 60px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
 }
 
@@ -599,8 +600,8 @@ body {
 
 .spinner {
     border: 2px solid #f1f5f9;
-    border-top: 2px solid #3b82f6;
     border-radius: 50%;
+    border-top: 2px solid #3b82f6;
     width: 24px;
     height: 24px;
     animation: spin 1s linear infinite;
@@ -642,5 +643,11 @@ body {
 
     .filter-tabs {
         justify-content: center;;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }

@@ -60,6 +60,7 @@ function renderProducts() {
         </div>  
       `
     ;
+    return;
   }
 
   container.innerHTML = filteredProducts.map((product) =>
@@ -126,25 +127,121 @@ function toggleWishlist(productId) {
     btn.className = "fas fa-heart";
     btn.style.color = '#ef4444';
   } else {
-    btn.className = "fas fa-heart";
+    btn.className = "far fa-heart";
     btn.style.color = '';
   }
 }
 
-loadProducts();
+function updateCartUI() {
+  const badge = document.getElementById('cartBadge');
+  const totalItems = cart.reduce((sum, item) => sum +item.quantity, 0);
 
-const struct = `
-        <div class="card-item">
-          <img src="${item.image}" alt="${item.title}">
-          <div class="cart-item-info">
-            <div class="cart-item-title"></div>
-            <div class="cart-item-price"></div>
-            <div class="quantity-controls">
-              <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-              <span style="padding: 0 0.5rem;">${item.quantity}</span>
-              <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-              <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
-            </div>
-          </div>
+  badge.textContent = totalItems;
+  badge.style.display = totalItems > 0 ? 'flex' : 'none';
+}
+
+function showCheckout() {
+  const overlay = document.getElementById('checkoutOverlay');
+  overlay.style.display = 'flex'
+  renderCheckout();
+}
+
+function renderCheckout() {
+  const content = document.getElementById('checkoutContent');
+  const footer = document.getElementById('checkoutFooter');
+  const totalAmount = document.getElementById('totalAmount');
+
+  if (cart.length === 0) {
+    content.innerHTML =
+      `
+        <div class="empty-cart">
+          <i class="fas fa-shopping-cart" style="font-size: 3rem; color: #e2e8f0; margin-bottom: 1rem;"></i>
+          <p>Your cart is empty</p>
+        </div>  
+      `
+    ;
+    footer.style.display = 'none';
+    return;
+  }
+
+  content.innerHTML = cart.map((item) =>
+  `
+   <div class="cart-item">
+      <img src="${item.image}" alt="${item.title}">
+      <div class="cart-item-info">
+        <div class="cart-item-title"></div>
+        <div class="cart-item-price"></div>
+        <div class="quantity-controls">
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+          <span style="padding: 0 0.5rem;">${item.quantity}</span>
+          <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
         </div>
-`
+      </div>
+    </div>
+   `
+  ).join('');
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  totalAmount.textContent = `Total: ${total.toFixed(2)}`;
+  footer.style.display = 'block';
+}
+
+function showNotification(message) {
+  const notif = document.createElement('div');
+  notif.textContent = message;
+  notif.style.position = 'fixed';
+  notif.style.bottom = '20px';
+  notif.style.right = '20px';
+  notif.style.background = '#3b82f6';
+  notif.style.color = 'white';
+  notif.style.padding = '0.75rem 1rem';
+  notif.style.borderRadius = '8px';
+  notif.style.fontWeight = '600';
+  notif.style.zIndex = '2000';
+  notif.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+  document.body.appendChild(notif);
+
+  setTimeout(() => {
+    notif.style.opacity = '0';
+    notif.style.transition = 'opacity 0.5s ease';
+
+    setTimeout(() => {
+        notif.remove();
+    }, 500)
+  }, 2000)
+}
+
+function setupEventListeners() {
+  document.querySelectorAll('.tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentCategory = tab.dataset.category;
+      renderProducts();
+    });
+  });
+
+  document.getElementById('cartBtn').addEventListener('click', showCheckout);
+  document.getElementById('closeCheckout').addEventListener('click', () => {
+    document.getElementById('checkoutOverlay').style.display = 'none';
+  });
+
+  document.getElementById('checkoutOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'checkoutOverlay') {
+      e.target.style.display = 'none';
+    }
+  })
+
+  const checkoutBtn = document.querySelector('.checkout-btn');
+   checkoutBtn.addEventListener('click', () => {
+     if (cart.length === 0) {
+       showNotification('Your Cart is empty')
+     } else {
+       showNotification('Proceeding to Checkout!')
+     }
+   })
+}
+
+loadProducts();
+setupEventListeners();
