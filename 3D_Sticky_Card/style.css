@@ -66,3 +66,51 @@ section {
     will-change: transform;
 }
 
+.card .col {
+    flex: 1;
+    height: 100%;
+}
+
+.card .col:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.card .col:nth-child(2) {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.card#card-1 {
+    background-color: var(--base-1);
+    z-index: 5;
+}
+
+.card#card-2 {
+    background-color: var(--base-2);
+    z-index: 4;
+}
+
+.card#card-3 {
+    background-color: var(--base-3);
+    z-index: 3;
+}
+
+.card#card-4 {
+    background-color: var(--base-4);
+    z-index: 2;
+}
+
+@media (max-width: 1000px) {
+    .sticky-cards .card {
+        width: calc(100% - 4rem);
+        height: 75%;
+        flex-direction: column;
+    }
+
+    .card col {
+        width: 100%;
+    }
+}
